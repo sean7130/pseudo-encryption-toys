@@ -1,3 +1,5 @@
+import sys
+
 def str_to_bin(str_input):
     return bin(int.from_bytes(str_input.encode(), 'big'))[2:]
 
@@ -33,3 +35,15 @@ def encode(message):
 def decode(message):
     step1 = h_to_bin(message)
     return bin_to_str(step1)
+
+
+if __name__ == "__main__":
+    # print(encode1('hello'))
+    if len(sys.argv) != 3:
+        print('check arguments')
+
+    
+    if sys.argv[1] == 'e':
+        print (encode(str(sys.argv[2])))
+    elif sys.argv[1] == 'd':
+        print (decode(sys.argv[2]))
