@@ -15,16 +15,6 @@ def convert_to_val(char):
 def convert_to_char(val):
     return chr(val+65)
 
-def encrpyt(ks, string):
-    string = string.upper().replace(" ","")
-    ret = ""
-    nks = generate_n_keystrings(ks, len(string))
-    for i, e in enumerate(string):
-        val = convert_to_val(e)
-        ret += convert_to_char((val+nks[i])%26)
-    return ret
-
-
 def generate_n_keystrings(ks, n):
     ret = list()
     for i in range(n):
@@ -81,6 +71,4 @@ if __name__ == "__main__":
     print(ks)
     print(key_stream_shuffle(key_stream_shuffle(ks)[1]))
     # print(generate_n_keystrings(ks, 15))
-
-    print(encrpyt(ks, "Lake Hylia"))
 
