@@ -1,0 +1,24 @@
+How the shuffling algorithim works:
+
+
+Consider the following deck. The top card has value 1. The bottom card has value 26.
+
+Top                                                                    Bottom
+1 4 7 10 13 16 19 22 25 28 3 6 9 12 15 18 21 24 27 2 5 8 11 14 17 20 23 26
+Step 1: Swap 27 with the value following it. So, we swap 27 and 2:
+
+1 4 7 10 13 16 19 22 25 28 3 6 9 12 15 18 21 24 2 27 5 8 11 14 17 20 23 26
+                                                ^^^^
+Step 2: Move 28 two places down the list. It ends up between 6 and 9:
+
+1 4 7 10 13 16 19 22 25 3 6 28 9 12 15 18 21 24 2 27 5 8 11 14 17 20 23 26
+                          ^^^^^^
+Step 3: Do the triple cut. Everything above the first joker (28 in this case) goes to the bottom of the deck, and everything below the second (27) goes to the top:
+
+5 8 11 14 17 20 23 26 28 9 12 15 18 21 24 2 27 1 4 7 10 13 16 19 22 25 3 6
+^^^^^^^^^^^^^^^^^^^^^                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Step 4: The bottom card is 6. The first 6 cards of the deck are 5, 8, 11, 14, 17, and 20. They go just ahead of 6 at the bottom end of the deck:
+
+23 26 28 9 12 15 18 21 24 2 27 1 4 7 10 13 16 19 22 25 3 5 8 11 14 17 20 6
+                                                      ^^^^^^^^^^^^^^^
+
