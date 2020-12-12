@@ -15,16 +15,6 @@ def chiper(ks, string, decrypt=False):
         ret += convert_to_char(op(val, nks[i])%26)
     return ret
 
-# def decrpyt(ks, string):
-#     # Assuming all chars are within 65-90
-#     ret = ""
-#     nks = generate_n_keystrings(ks, len(string))
-#     for i, e in enumerate(string):
-#         val = convert_to_val(e)
-#         ret += convert_to_char((val-nks[i])%26)
-#     return ret
-# 
-
 if __name__ == "__main__":
     ks = read_keystream_file('ks1')
     text = (chiper(ks, "Lake Hylia"))

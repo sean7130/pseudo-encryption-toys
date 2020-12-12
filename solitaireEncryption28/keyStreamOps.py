@@ -61,7 +61,7 @@ def key_stream_shuffle(ks):
     ks = ks[val:]
     ks += (this_slice + [val])
 
-    print(ks)
+    # print(ks)
     if ks[0] == 28: return ks[-1], ks
     return ks[ks[0]], ks
 
