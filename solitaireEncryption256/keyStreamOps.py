@@ -10,10 +10,10 @@ def update_jokers(ks):
     return ks.index(27), ks.index(28)
 
 def convert_to_val(char):
-    return ord(char)-65
+    return ord(char)
 
 def convert_to_char(val):
-    return chr(val+65)
+    return chr(val)
 
 def generate_n_keystrings(ks, n):
     ret = list()
@@ -24,18 +24,18 @@ def generate_n_keystrings(ks, n):
         ret.append(val)
     return ret
 
-def key_stream_shuffle(ks):
+def key_stream_shuffle(ks, ks_size=256):
     """ shuffles the keystream"""
 
     loc_27, loc_28 = update_jokers(ks)
     # STEP 1: swapper 
-    ks[loc_27] = ks[(loc_27+1)%28]
-    ks[(loc_27+1)%28] = 27
+    ks[loc_27] = ks[(loc_27+1)%ks_size]
+    ks[(loc_27+1)%ks_size] = 27
 
     # print(ks)
     # STEP 2: 
     ks.remove(28)
-    ks.insert((loc_28+2)%28, 28)
+    ks.insert((loc_28+2)%ks_size, 28)
 
     # STEP 3
     # compare sizes between the two jokers
@@ -62,12 +62,12 @@ def key_stream_shuffle(ks):
     ks += (this_slice + [val])
 
     # print(ks)
-    if ks[0] == 28: return ks[-1], ks
+    if ks[0] == ks_size: return ks[-1], ks
     return ks[ks[0]], ks
 
 
 if __name__ == "__main__":
-    ks = read_keystream_file('ks1')
+    ks = read_keystream_file('ks')
     print(ks)
     print(key_stream_shuffle(key_stream_shuffle(ks)[1]))
     # print(generate_n_keystrings(ks, 15))
