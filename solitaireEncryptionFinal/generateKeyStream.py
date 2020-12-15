@@ -5,7 +5,7 @@ def show_help(exit=True):
     print("usage: " + sys.argv[0] + " [-f filename] [-s size]")
     if exit: exit()
 
-def generate_keystream(size=256, seed=None):
+def generate_keystream(size=94, seed=None):
     ky = list()
     for i in range(1, size+1):
         ky.append(i)
@@ -28,7 +28,7 @@ def write_keystream_to_file(keystream, filename='ks'):
 
 
 # Main function
-def generate_keystream_to_file(size=256, seed=None, filename='ks'):
+def generate_keystream_to_file(size=94, seed=None, filename='ks'):
     ks = generate_keystream(size, seed)
     write_keystream_to_file(ks, filename)
 
@@ -38,4 +38,4 @@ if __name__ == "__main__":
         show_help()
 
     # TODO: refine command line flag support for -f -s (seed) --seed --size
-    generate_keystream_to_file()
+    generate_keystream_to_file(filename='ks94')

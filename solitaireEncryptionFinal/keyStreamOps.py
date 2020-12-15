@@ -10,10 +10,10 @@ def update_jokers(ks):
     return ks.index(27), ks.index(28)
 
 def convert_to_val(char):
-    return ord(char)
+    return ((ord(char)-33))
 
 def convert_to_char(val):
-    return chr(val)
+    return chr((val+33))
 
 def generate_n_keystrings(ks, n):
     ret = list()
@@ -24,7 +24,7 @@ def generate_n_keystrings(ks, n):
         ret.append(val)
     return ret
 
-def key_stream_shuffle(ks, ks_size=256):
+def key_stream_shuffle(ks, ks_size=94):
     """ shuffles the keystream"""
 
     loc_27, loc_28 = update_jokers(ks)
@@ -67,8 +67,21 @@ def key_stream_shuffle(ks, ks_size=256):
 
 
 if __name__ == "__main__":
-    ks = read_keystream_file('ks')
-    print(ks)
-    print(key_stream_shuffle(key_stream_shuffle(ks)[1]))
-    # print(generate_n_keystrings(ks, 15))
+    # ks = read_keystream_file('ks94')
+    # print(ks)
+    # print(len(ks))
+    # print(key_stream_shuffle(key_stream_shuffle(ks)[1]))
+    # print(generate_n_keystrings(ks, 200))
+
+    vals = []
+    test_str = " hello, there!"
+
+    for s in test_str:
+        vals.append(convert_to_val(s))
+    print(vals)
+
+    recovered_str = ""
+    for e in vals:
+        recovered_str += convert_to_char(e)
+    print(recovered_str)
 

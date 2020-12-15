@@ -1,6 +1,6 @@
 from keyStreamOps import *
 
-def chiper(ks, string, decrypt=False, ks_size=256):
+def chiper(ks, string, decrypt=False, ks_size=94):
     ''' Default mode is encrpyt (decrypt=False)
     But can made into decrypt by setting decrypt=True
     '''
@@ -9,19 +9,20 @@ def chiper(ks, string, decrypt=False, ks_size=256):
 
     ret = ""
     nks = generate_n_keystrings(ks, len(string))
-    # print(string)
-    # print(nks)
+    print("input string:", string)
+    print("generated nks:", nks)
     for i, e in enumerate(string):
         val = convert_to_val(e)
-        # print("previous val:", val)
+        print("previous char, val:", e, val)
         op_val = (op(val, nks[i])%ks_size)
-        # print("after operation:", op_val, chr(op_val))
-        ret += convert_to_char(op_val)
-        # print(ret)
+        new_char = convert_to_char(op_val)
+        print("after operation char, val:", new_char, op_val)
+        ret += new_char
+        print(ret)
     return ret
 
 if __name__ == "__main__":
-    ks = read_keystream_file('ks1')
+    ks = read_keystream_file('ks94')
     in_text = "The quick brown fox jumps over the lazy dog, this is pretty cool!"
     text = (chiper(ks, in_text))
     num = list()
@@ -29,8 +30,11 @@ if __name__ == "__main__":
         num.append(ord(e))
         if ord(e) > 127:
             print(e)
-    print("num", num)
 
-    print(text)
-    ks = read_keystream_file('ks1')
+    print('text:', text)
+    ks = read_keystream_file('ks94')
     print(chiper(ks, text, True))
+
+    external_text = 'C2JOG!2U[QsPAbW,<d97/JE%Sc:D[1qy"Ej8#geBPn-]={9/u(vocWKFB<R{x]CTR'
+    ks = read_keystream_file('ks94')
+    print(chiper(ks, external_text, True))
