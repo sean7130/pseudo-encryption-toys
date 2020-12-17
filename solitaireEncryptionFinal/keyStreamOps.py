@@ -10,10 +10,10 @@ def update_jokers(ks):
     return ks.index(27), ks.index(28)
 
 def convert_to_val(char):
-    return ((ord(char)-33))
+    return ((ord(char)-32))
 
 def convert_to_char(val):
-    return chr((val+33))
+    return chr((val+32))
 
 def generate_n_keystrings(ks, n):
     ret = list()
