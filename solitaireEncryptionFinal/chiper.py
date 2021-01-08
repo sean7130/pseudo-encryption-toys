@@ -9,16 +9,16 @@ def chiper(ks, string, decrypt=False, ks_size=95):
 
     ret = ""
     nks = generate_n_keystrings(ks, len(string))
-    print("input string:", string)
-    print("generated nks:", nks)
+    # print("input string:", string)
+    # print("generated nks:", nks)
     for i, e in enumerate(string):
         val = convert_to_val(e)
-        print("previous char, val:", e, val)
+        # print("previous char, val:", e, val)
         op_val = (op(val, nks[i])%ks_size)
         new_char = convert_to_char(op_val)
-        print("after operation char, val:", new_char, op_val)
+        # print("after operation char, val:", new_char, op_val)
         ret += new_char
-        print(ret)
+        # print(ret)
     return ret
 
 if __name__ == "__main__":
