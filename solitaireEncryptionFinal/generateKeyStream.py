@@ -6,9 +6,7 @@ def show_help(exit=True):
     if exit: exit()
 
 def generate_keystream(size=94, seed=None):
-    ky = list()
-    for i in range(1, size+1):
-        ky.append(i)
+    ky = [i for i in range(1, size+1)]
 
     if seed != None:
         random.seed(seed)
@@ -38,4 +36,4 @@ if __name__ == "__main__":
         show_help()
 
     # TODO: refine command line flag support for -f -s (seed) --seed --size
-    generate_keystream_to_file(filename='ks94')
+    generate_keystream_to_file(filename='test') 

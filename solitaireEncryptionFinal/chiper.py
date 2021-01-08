@@ -23,7 +23,7 @@ def chiper(ks, string, decrypt=False, ks_size=95):
 
 if __name__ == "__main__":
     ks = read_keystream_file('ks94')
-    in_text = "The quick brown fox jumps over the lazy dog, this is pretty cool!"
+    in_text = "hello world"
     text = (chiper(ks, in_text))
     num = list()
     for e in in_text: 
