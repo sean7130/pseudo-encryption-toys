@@ -35,5 +35,13 @@ if __name__ == "__main__":
     if "--help" in sys.argv:
         show_help()
 
-    # TODO: refine command line flag support for -f -s (seed) --seed --size
-    generate_keystream_to_file(filename='test') 
+    filename = 'ks'
+    seed = None
+    for i in range(1, len(sys.argv)):
+        if sys.argv[i] == "-s":
+            seed = sys.argv[i+1]
+        elif sys.argv[i] == "-f":
+            filename = sys.argv[i+1]
+
+    generate_keystream_to_file(seed=seed, filename=filename)
+

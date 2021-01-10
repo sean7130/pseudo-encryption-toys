@@ -24,12 +24,7 @@ def chiper(ks, string, decrypt=False, ks_size=95):
 if __name__ == "__main__":
     ks = read_keystream_file('ks94')
     in_text = "hello world"
-    text = (chiper(ks, in_text))
-    num = list()
-    for e in in_text: 
-        num.append(ord(e))
-        if ord(e) > 127:
-            print(e)
+    text = (chiper(ks, in_text, False))
 
     print('text:', text)
     ks = read_keystream_file('ks94')
@@ -39,3 +34,4 @@ if __name__ == "__main__":
     external_text = 'B1IOF 1TZQsO@aV,;c87.ID$Rc9CZ0qy!Dj7"fdBOm,]={8.u(vncVJEA;Q{x\BSR'
     ks = read_keystream_file('ks94')
     print(chiper(ks, external_text, True))
+
