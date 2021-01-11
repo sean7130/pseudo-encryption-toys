@@ -39,5 +39,15 @@ if args.verbose:
 ks = generate_keystream(94, args.seed)
 
 # determine to read text from commandline or from file
-text = " ".join(args.text)
-args.outfile.write(chiper.chiper(ks, text, do_decrypt))
+if (args.infile):
+    in_file = open(args.infile, "r")
+    text = []
+    for line in in_file.readlines():
+        # remove the newline in the end
+        text.append(line[:-1])
+else:
+    text = [" ".join(args.text)]
+
+
+for line in text:
+    args.outfile.write(chiper.chiper(ks, line, do_decrypt)+"\n")
