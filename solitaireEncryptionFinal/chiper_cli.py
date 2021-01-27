@@ -3,7 +3,7 @@ import argparse
 import chiper
 from generateKeyStream import generate_keystream
 
-parser = argparse.ArgumentParser(description='Process some integers.')
+parser = argparse.ArgumentParser(description='Encrpyt or decrypt using a (simulated) deck of cards')
 parser.add_argument('--verbose', "-v", action='store_true', help='verbose mode')
 parser.add_argument('mode', choices=["e", "encrypt", "d", "decrypt"],
                     help='the mode the program should execute in. e/encrypt \
