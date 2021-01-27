@@ -1,4 +1,5 @@
 import sys
+import argparse
 
 def str_to_bin(str_input):
     return bin(int.from_bytes(str_input.encode(), 'big'))[2:]
@@ -39,27 +40,40 @@ def decode(message):
 
 if __name__ == "__main__":
     # print(encode1('hello'))
-    if len(sys.argv) < 3:
-        print('USAGE:')
-        print(sys.argv[0] + ' [-d/e] "sample text"')
-        exit(1)
-    
-    if sys.argv[1] == '-e':
-        if len(sys.argv) == 3: 
-            print(encode(str(sys.argv[2])))
-        else:
-            ret = ""
-            for i in range(2, len(sys.argv)):
-                ret += str(sys.argv[i])
-                ret += " "
-            print(encode(str(ret[:-1])))
+    # if len(sys.argv) < 3:
+    #     print('USAGE:')
+    #     print(sys.argv[0] + ' [-d/e] "sample text"')
+    #     exit(1)
+    # 
+    # if sys.argv[1] == '-e':
+    #     if len(sys.argv) == 3: 
+    #         print(encode(str(sys.argv[2])))
+    #     else:
+    #         ret = ""
+    #         for i in range(2, len(sys.argv)):
+    #             ret += str(sys.argv[i])
+    #             ret += " "
+    #         print(encode(str(ret[:-1])))
 
+    # elif sys.argv[1] == '-d':
+    #     print(decode(sys.argv[2]))
+    # elif sys.argv[1] == '-ef':
+    #     # to be refined 
+    #     file_to_write = open(sys.argv[2], 'w')
+    #     file_to_write.write(encode(str(sys.argv[3])))
+    #     file_to_write.flush()
+    #     file_to_write.close()
 
-    elif sys.argv[1] == '-d':
-        print(decode(sys.argv[2]))
-    elif sys.argv[1] == '-ef':
-        # to be refined 
-        file_to_write = open(sys.argv[2], 'w')
-        file_to_write.write(encode(str(sys.argv[3])))
-        file_to_write.flush()
-        file_to_write.close()
+    parser = argparse.ArgumentParser(description='Encrpyt/Decrpyt ascii text into sequences of "H')
+    parser.add_argument('mode', choices=["e", "encrypt", "d", "decrypt"],
+                    help='the mode the program should execute in. e/encrypt \
+                    for encrypting text, d/decrypt for decrypting')
+    parser.add_argument('text', nargs="*", help="text to be encrypted/decrypted")
+
+    args = parser.parse_args()
+
+    if args.mode == 'e' or args.mode == 'encrypt':
+        print(encode(" ".join(args.text)))
+    else:
+        print(decode(args.text[0]))
+
