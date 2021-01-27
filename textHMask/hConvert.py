@@ -30,39 +30,13 @@ def h_to_bin(h_input):
     return return_bin
 
 def encode(message):
-    step1 = str_to_bin(message)
-    return bin_to_h(step1)
+    return bin_to_h(str_to_bin(message))
 
 def decode(message):
-    step1 = h_to_bin(message)
-    return bin_to_str(step1)
+    return bin_to_str(h_to_bin(message))
 
 
 if __name__ == "__main__":
-    # print(encode1('hello'))
-    # if len(sys.argv) < 3:
-    #     print('USAGE:')
-    #     print(sys.argv[0] + ' [-d/e] "sample text"')
-    #     exit(1)
-    # 
-    # if sys.argv[1] == '-e':
-    #     if len(sys.argv) == 3: 
-    #         print(encode(str(sys.argv[2])))
-    #     else:
-    #         ret = ""
-    #         for i in range(2, len(sys.argv)):
-    #             ret += str(sys.argv[i])
-    #             ret += " "
-    #         print(encode(str(ret[:-1])))
-
-    # elif sys.argv[1] == '-d':
-    #     print(decode(sys.argv[2]))
-    # elif sys.argv[1] == '-ef':
-    #     # to be refined 
-    #     file_to_write = open(sys.argv[2], 'w')
-    #     file_to_write.write(encode(str(sys.argv[3])))
-    #     file_to_write.flush()
-    #     file_to_write.close()
 
     parser = argparse.ArgumentParser(description='Encrpyt/Decrpyt ascii text into sequences of "H')
     parser.add_argument('mode', choices=["e", "encrypt", "d", "decrypt"],
